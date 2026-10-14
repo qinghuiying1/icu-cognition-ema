@@ -1,4 +1,4 @@
-export const APP_VERSION = '1.0.0-rc.1';
+export const APP_VERSION = '1.0.0-rc.2';
 export const MATERIAL_VERSION = 'materials-1';
 export const SCHEMA_VERSION = 1;
 export const STROOP_MS = 45_000;
@@ -36,7 +36,7 @@ export interface SymbolTrial {
   raw: Record<string, unknown>;
 }
 export interface Symptoms {
-  pain: number; fatigue: number; anxiety: number; depressed: number; sleep: number;
+  pain: number | null; fatigue: number | null; anxiety: number | null; depressed: number | null; sleep: number | null;
 }
 export interface SessionRecord {
   sessionId: string; schemaVersion: number; appVersion: string; materialVersion: string;
@@ -54,6 +54,7 @@ export interface SessionRecord {
   qc: 0 | 1 | 9; notes: string; reason: string;
   interruptions: TimeEvent[]; device: { userAgent: string; width: number;
     height: number; pixelRatio: number; };
+  uiDraft?: { phase: Phase; stroopKind: StroopKind; symptomIndex?: number; values: Record<string, string | boolean>; };
 }
 export interface Acceptance {
   appVersion: string; audio: boolean; cards: boolean; timing: boolean;

@@ -1,0 +1,92 @@
+{
+  "displayVersion": "title-free-1",
+  "transformation": "Lossless pixel crop only; no resizing, recoloring, or item changes.",
+  "coordinateConvention": "[left, top, right-exclusive, bottom-exclusive] in source pixels",
+  "originalFilesPreserved": true,
+  "cards": [
+    {
+      "card": "W",
+      "source": "cards/W.png",
+      "display": "cards/display/W.png",
+      "sourceSize": [
+        800,
+        342
+      ],
+      "cropBox": [
+        24,
+        98,
+        775,
+        342
+      ],
+      "taskBounds": [
+        32,
+        106,
+        767,
+        334
+      ],
+      "displaySize": [
+        751,
+        244
+      ],
+      "sourceSha256": "377e34e95bcec5a2dcbd12d19d21645b754c5d9b89c98f151202164fc04bdb32",
+      "displaySha256": "255551d97c238d29ed4cfa447141a062a7d068a32f594ea33f8dc2d73af907dc",
+      "taskPixelsUnchanged": true
+    },
+    {
+      "card": "C",
+      "source": "cards/C.png",
+      "display": "cards/display/C.png",
+      "sourceSize": [
+        789,
+        317
+      ],
+      "cropBox": [
+        23,
+        60,
+        774,
+        301
+      ],
+      "taskBounds": [
+        31,
+        68,
+        766,
+        293
+      ],
+      "displaySize": [
+        751,
+        241
+      ],
+      "sourceSha256": "a1ac7523a041513be3dadeb02713dcc54166aade691de6179f84147117899e47",
+      "displaySha256": "4774094e4b10568fd23434f57b044c99f799e88dd6d1a05e0b0d9b1c3bdb07a1",
+      "taskPixelsUnchanged": true
+    },
+    {
+      "card": "CW",
+      "source": "cards/CW.png",
+      "display": "cards/display/CW.png",
+      "sourceSize": [
+        861,
+        410
+      ],
+      "cropBox": [
+        21,
+        57,
+        859,
+        378
+      ],
+      "taskBounds": [
+        29,
+        65,
+        851,
+        370
+      ],
+      "displaySize": [
+        838,
+        321
+      ],
+      "sourceSha256": "2323f0b5b5bf20d5a56e1a86176ab140039085f263c1e2357250e1be23035cbd",
+      "displaySha256": "0216f1819d96ecc8ada64a7727bf0809049e8aebf80cb073c76e90faf1230731",
+      "taskPixelsUnchanged": true
+    }
+  ]
+}

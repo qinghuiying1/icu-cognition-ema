@@ -1,6 +1,6 @@
 {
-  "buildId": "bc96de22c5a0da66",
-  "appVersion": "1.0.0-rc.1",
+  "buildId": "cf51a438f627b786",
+  "appVersion": "1.0.0-rc.2",
   "assets": [
     {
       "url": ".nojekyll",
@@ -13,6 +13,16 @@
       "bytes": 25525
     },
     {
+      "url": "assets/index-BzYgVQn7.js",
+      "sha256": "b4806e2959911e0b2f425fd95c4ecf483b55401dcedc64a485ae684fe31f5e59",
+      "bytes": 164367
+    },
+    {
+      "url": "assets/index-CKQAUMV2.css",
+      "sha256": "326d6c88286d54ee98f32f70432dbaf0db90394df6150daa0727b4e013940545",
+      "bytes": 17455
+    },
+    {
       "url": "assets/index-CuNfS24b.js",
       "sha256": "e84376f0f80c349fc4a84c695ff0c7d4610cfaa1d93a2066537b7a8d498f2556",
       "bytes": 112892
@@ -21,16 +31,6 @@
       "url": "assets/index-CvhDztE9.js",
       "sha256": "b920433df6682aaa666e5ddeb0624c395c06331cd684909bf734ea376b170f8b",
       "bytes": 315043
-    },
-    {
-      "url": "assets/index-D09YcXMA.css",
-      "sha256": "2d0a8cb707eb17329f5d0295af52c230fc4867d6fd5ad84cff6dda0a9c3adfc6",
-      "bytes": 12685
-    },
-    {
-      "url": "assets/index-Dyeje12B.js",
-      "sha256": "e8c358bee40d15c6fb6271ad6221ca03fb1a02dcf642fea310da1e0bfe3214ae",
-      "bytes": 155129
     },
     {
       "url": "assets/symbol-search/LICENSE-core.txt",
@@ -368,6 +368,26 @@
       "bytes": 12535
     },
     {
+      "url": "cards/display/C.png",
+      "sha256": "4774094e4b10568fd23434f57b044c99f799e88dd6d1a05e0b0d9b1c3bdb07a1",
+      "bytes": 20117
+    },
+    {
+      "url": "cards/display/CW.png",
+      "sha256": "0216f1819d96ecc8ada64a7727bf0809049e8aebf80cb073c76e90faf1230731",
+      "bytes": 28757
+    },
+    {
+      "url": "cards/display/W.png",
+      "sha256": "255551d97c238d29ed4cfa447141a062a7d068a32f594ea33f8dc2d73af907dc",
+      "bytes": 10199
+    },
+    {
+      "url": "cards/display/manifest.json",
+      "sha256": "b53ad3ae43c9d331cdabe920bec49e02db49c3dca82cadd6bd10d27d3375fcfe",
+      "bytes": 2134
+    },
+    {
       "url": "favicon.svg",
       "sha256": "e159db5baf03aad9309f80b411f87307bc6c899a3e1fa7809cd0df9e8d831436",
       "bytes": 184
@@ -379,7 +399,7 @@
     },
     {
       "url": "index.html",
-      "sha256": "492df85e91b5289e0242c0bf34b625b871588c9316dc3c5383f4335a394b08d1",
+      "sha256": "288f96c7dbbef6660c5ccc41287437b86fe9704de61dc9e2fb7ae0c85622de2b",
       "bytes": 626
     },
     {

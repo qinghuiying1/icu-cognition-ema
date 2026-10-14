@@ -14,7 +14,7 @@ import { runSymbolSearch } from './symbol';
 const root = document.querySelector<HTMLDivElement>('#app')!;
 const STROOP: StroopKind[] = ['w', 'c', 'cw'];
 const CARD_NAMES: Record<StroopKind, string> = { w:'读字', c:'命名颜色', cw:'读字的颜色' };
-const CARD_FILES: Record<StroopKind, string> = { w:'W.png', c:'C.png', cw:'CW.png' };
+const CARD_FILES: Record<StroopKind, string> = { w:'display/W.png', c:'display/C.png', cw:'display/CW.png' };
 const cardUrl = (file:string) => `${import.meta.env.BASE_URL}cards/${file}`;
 type Screen = 'home' | 'acceptance' | 'records' | 'session';
 let screen: Screen = 'home';
@@ -41,6 +41,10 @@ let saveQueue: Promise<void> = Promise.resolve();
 let symptomIndex = 0;
 let symptomDraft: Partial<Symptoms> = {};
 let learningPlaying = false;
+let historyStage: number | null = null;
+let resumeId: string | null = null;
+let symbolGeneration = 0;
+const STAGE_NAMES = ['词语学习与即时回忆','当前感受','颜色任务：读字','颜色任务：命名颜色','颜色任务：读字的颜色','延迟回忆','符号搜索','核对导出'];
 let setup = { id:'TEST001', day:1, firstDate:localDate(), mode:'simulation' as Mode };
 
 function escape(value: unknown): string {
@@ -57,16 +61,16 @@ function readableError(error:unknown):string { return error instanceof Error ? e
 async function act(fn:()=>void|Promise<void>):Promise<void> {
   if(busy) return;
   busy=true; failure=''; updateBanners();
-  root.querySelectorAll<HTMLButtonElement>('button').forEach(b=>{b.dataset.wasDisabled=String(b.disabled);b.disabled=true;});
+  root.querySelectorAll<HTMLButtonElement|HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>('button,input,select,textarea').forEach(b=>{b.dataset.wasDisabled=String(b.disabled);b.disabled=true;});
   try { await fn(); }
   catch(error) { failure=readableError(error); }
-  finally { busy=false; root.querySelectorAll<HTMLButtonElement>('button[data-was-disabled]').forEach(b=>{b.disabled=b.dataset.wasDisabled==='true';delete b.dataset.wasDisabled;});updateBanners(); }
+  finally { busy=false; root.querySelectorAll<HTMLButtonElement|HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>('[data-was-disabled]').forEach(b=>{b.disabled=b.dataset.wasDisabled==='true';delete b.dataset.wasDisabled;});updateBanners(); }
 }
 function updateBanners():void {
   const area=$('#messages');
   if(area) area.innerHTML=`${failure?`<div class="message error" role="alert">${escape(failure)}</div>`:''}${notice?`<div class="message success" role="status">${escape(notice)}</div>`:''}${saveBlocked?`<div class="message error">本次记录尚未成功保存。请保留此页面，点击重试保存；保存成功后再继续。${button('retry-save','重试保存','secondary')}</div>`:''}`;
   if(saveBlocked){
-    root.querySelectorAll<HTMLButtonElement>('main button').forEach(b=>{b.disabled=true;});
+    root.querySelectorAll<HTMLButtonElement|HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>('main button,main input,main select,main textarea').forEach(b=>{b.disabled=true;});
     document.getElementById('retry-save')?.addEventListener('click',()=>void act(async()=>{await persist();render();}));
   }
 }
@@ -80,25 +84,135 @@ async function persist():Promise<void> {
 }
 async function transition(phase:SessionRecord['phase']):Promise<void> {
   if(!record) return;
-  record.phase=phase;researcherOpen=false;notice='';
+  record.phase=phase;record.uiDraft=undefined;historyStage=null;researcherOpen=false;notice='';
+  event(record,'phase-transition',{phase,stroopKind,symptomIndex});
   await persist();render();
+}
+function stageIndex():number {
+  const p=record?.phase??'learning';
+  if(p.startsWith('learning'))return 0;
+  if(p==='symptoms')return 1;
+  if(p.startsWith('stroop'))return 2+STROOP.indexOf(stroopKind);
+  if(p.startsWith('delay'))return 5;
+  if(p.startsWith('symbol'))return 6;
+  return 7;
+}
+function stageSkipped(index:number):boolean {return !!record?.events.some(e=>e.kind==='step-skipped'&&e.details?.stage===index);}
+function captureDraft():void {
+  if(!record||screen!=='session'||historyStage!==null)return;
+  if(record.phase==='symptoms'){
+    const key=SYMPTOM_ITEMS[symptomIndex].key;
+    if(symptomDraft[key]!==undefined)event(record,'symptom-answer',{key,value:symptomDraft[key]});
+    event(record,'symptom-position',{index:symptomIndex});
+  }
+  const values:Record<string,string|boolean>={};
+  root.querySelectorAll<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>('main input[id],main select[id],main textarea[id]').forEach(el=>{
+    values[el.id]=el instanceof HTMLInputElement&&el.type==='checkbox'?el.checked:el.value;
+  });
+  record.uiDraft={phase:record.phase,stroopKind,symptomIndex,values};
+}
+function restoreDraft():void {
+  const d=record?.uiDraft;if(screen!=='session'||historyStage!==null||!d||d.phase!==record?.phase||d.stroopKind!==stroopKind||(record.phase==='symptoms'&&d.symptomIndex!==symptomIndex))return;
+  for(const [id,value] of Object.entries(d.values)){
+    const el=document.getElementById(id) as HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|null;
+    if(!el)continue;
+    if(el instanceof HTMLInputElement&&el.type==='checkbox')el.checked=Boolean(value);else el.value=String(value);
+  }
+}
+function navigation():string {
+  const inSession=screen==='session'&&record!==null;
+  const index=historyStage??stageIndex();
+  const previous=inSession&&(index>0||(record?.phase==='symptoms'&&symptomIndex>0));
+  const skip=inSession&&historyStage===null&&record?.status==='in-progress'&&index<7;
+  return `<nav id="assessment-navigation" class="task-navigation" aria-label="页面导航">${button('nav-home','返回主页','secondary',screen==='home')}${button('nav-prev','返回上一步','secondary',!previous)}${button('nav-skip','跳过这一步','secondary',!skip)}</nav>`;
+}
+async function abandonActiveForNavigation():Promise<void> {
+  if(!record||record.status!=='in-progress')return;
+  const r=record;
+  if(r.phase==='stroop-running'){
+    stopClock();const run=structuredClone(r.stroop[stroopKind]);
+    event(r,'task-navigation-abandon',{task:`stroop-${stroopKind}`,data:run,elapsedMs:performance.now()-timerStart});
+    event(r,'stroop-abandoned',{kind:stroopKind});
+    r.stroop[stroopKind]=null;r.phase='stroop-ready';r.qc=9;
+    r.notes=[r.notes,'曾主动离开计时中的颜色任务，原始尝试见事件记录。'].filter(Boolean).join('；');
+  }else if(r.phase==='symbol-running'){
+    symbolGeneration++;symbolController?.stop();symbolController=null;stopClock();
+    event(r,'task-navigation-abandon',{task:'symbol',data:structuredClone(r.symbol)});
+    r.symbol={seed:crypto.randomUUID(),startedAt:null,endedAt:null,trials:[]};r.phase='symbol-ready';r.qc=9;
+    r.notes=[r.notes,'曾主动离开计时中的符号搜索，原始尝试见事件记录。'].filter(Boolean).join('；');
+  }
+}
+async function leaveForHome():Promise<void> {
+  if(saveBlocked)throw new Error('请先重试保存，再返回主页。');
+  captureDraft();await abandonActiveForNavigation();stopClock();historyStage=null;
+  if(record){event(record,'navigation-home',{phase:record.phase});await persist();resumeId=record.status==='in-progress'?record.sessionId:null;}
+  screen='home';notice='已有记录已保存，可从主页继续本次测评。';render();
+}
+async function previousStep():Promise<void> {
+  if(!record)return;
+  if(saveBlocked)throw new Error('请先重试保存，再返回上一步。');
+  captureDraft();await abandonActiveForNavigation();
+  if(historyStage===null&&record.phase==='symptoms'&&symptomIndex>0){
+    symptomIndex--;record.uiDraft=undefined;event(record,'symptom-position',{index:symptomIndex});await persist();render();return;
+  }
+  const index=historyStage??stageIndex();if(index<=0)return;
+  stopClock();historyStage=index-1;event(record,'navigation-history',{stage:historyStage});await persist();render();
+}
+async function advanceFromSkippedStage(stage:number):Promise<void> {
+  if(stage===0){symptomIndex=0;await transition('symptoms');}
+  else if(stage===1){stroopKind='w';await transition('stroop-ready');}
+  else if(stage>=2&&stage<=4){if(stage<4){stroopKind=STROOP[stage-1];await transition('stroop-ready');}else await transition('delay-wait');}
+  else if(stage===5)await transition('symbol-ready');
+  else{record!.status='completed';record!.endedAt=new Date().toISOString();await transition('review');}
+}
+async function skipStep():Promise<void> {
+  if(!record||record.status!=='in-progress')return;
+  if(saveBlocked)throw new Error('请先重试保存，再跳过。');
+  const stage=stageIndex(),partialSymbol=stage===6?structuredClone(record.symbol):null;captureDraft();await abandonActiveForNavigation();stopClock();
+  if(partialSymbol){partialSymbol.endedAt=new Date().toISOString();record.symbol=partialSymbol;}
+  if(stage===0&&record.phase==='learning-score'&&record.memory.rounds.at(-1)?.correct!==null&&record.memory.rounds[0]?.correct!==null){event(record,'navigation-next',{stage});await advanceFromSkippedStage(stage);return;}
+  if(stage===1){
+    const item=SYMPTOM_ITEMS[symptomIndex];symptomDraft[item.key]=null;event(record,'symptom-skipped',{key:item.key});
+    event(record,'symptom-answer',{key:item.key,value:null});
+    record.uiDraft=undefined;record.qc=9;record.reason=[record.reason,`跳过：${item.title}`].filter(Boolean).join('；');
+    if(symptomIndex<4){symptomIndex++;event(record,'symptom-position',{index:symptomIndex});await persist();render();return;}
+    record.symptoms=completeSymptoms();
+  }else event(record,'step-skipped',{stage,name:STAGE_NAMES[stage],reason:'研究者选择跳过'});
+  record.qc=9;if(stage!==1)record.reason=[record.reason,`跳过：${STAGE_NAMES[stage]}`].filter(Boolean).join('；');
+  await advanceFromSkippedStage(stage);
+}
+function completeSymptoms():Symptoms {
+  return Object.fromEntries(SYMPTOM_ITEMS.map(item=>[item.key,symptomDraft[item.key]??null])) as unknown as Symptoms;
+}
+function renderHistory():void {
+  const r=record!,index=historyStage!;let body='';
+  if(index===0){const d=derived(r);body=`<p>首次即时回忆：${number(d.immediate)} / 3；学习 ${r.memory.rounds.length} 轮。</p><p>已保存的首轮回答保持不变，返回查看不会重新播放词语。</p>`;}
+  else if(index===1)body=`<div class="symptom-summary">${SYMPTOM_ITEMS.map(item=>`<span>${item.title} ${r.symptoms?.[item.key]??symptomDraft[item.key]??'未记录'}</span>`).join('')}</div>`;
+  else if(index>=2&&index<=4){const run=r.stroop[STROOP[index-2]];body=`<p>正确数：${run?.correct??'未记录'}；返回首项次数：${run?.repeatCount??'未记录'}。</p><p>已完成任务仅查看原始记录，不自动重新计时。</p>`;}
+  else if(index===5)body=`<p>延迟回忆：${number(derived(r).delayed)} / 3；实际延迟 ${number(derived(r).delay_sec,1)} 秒。</p>`;
+  else body=summaryTable(r);
+  shell(`${title('返回查看',STAGE_NAMES[index])}<section class="panel">${body}<div class="actions">${button('resume-current','返回当前进度')}</div></section>`);
+  bind('resume-current',()=>{historyStage=null;render();});
 }
 function header():string {
   const r=record;
   return `<header class="app-header"><div class="brand"><span class="brand-mark" aria-hidden="true">＋</span><div><strong>认知每日测评</strong><span>院内研究者指导版</span></div></div><div class="header-right">${screen==='session'&&r?`<span class="id-chip">${escape(r.id)} · 第${r.day}日</span><span class="mode-badge ${r.mode}">${r.mode==='simulation'?'模拟测评':'正式资料'}</span>`:`<span class="status-dot ${cacheReady?'ready':''}">${cacheReady?'离线资源已准备':'尚未完成离线准备'}</span>`}</div></header>`;
 }
 function shell(body:string,extra=''):void {
-  root.innerHTML=`${header()}<div id="messages" class="messages" aria-live="polite"></div><main class="main ${extra}">${body}</main><footer class="app-footer"><span>资料保存在本台平板 · 测完请导出转存</span><span>版本 ${escape(APP_VERSION)}</span></footer><div class="portrait-notice"><strong>请将平板横过来</strong><span>横屏显示卡片更清楚。</span></div>`;
+  document.body.classList.toggle('stroop-active',screen==='session'&&historyStage===null&&record?.phase==='stroop-running');
+  root.innerHTML=`${header()}${navigation()}<div id="messages" class="messages" aria-live="polite"></div><main class="main ${extra}">${body}</main><footer class="app-footer"><span>资料保存在本台平板 · 测完请导出转存</span><span>版本 ${escape(APP_VERSION)}</span></footer><div class="portrait-notice"><strong>建议横屏</strong><span>旋转后可继续测评。</span></div>`;
+  bind('nav-home',leaveForHome);bind('nav-prev',previousStep);bind('nav-skip',skipStep);restoreDraft();
   updateBanners();
   // Freshly rendered controls must stay disabled until the current audio/save
   // action settles, otherwise a quick tap is silently ignored by act().
-  if(busy)root.querySelectorAll<HTMLButtonElement>('button').forEach(b=>{b.dataset.wasDisabled=String(b.disabled);b.disabled=true;});
+  if(busy)root.querySelectorAll<HTMLButtonElement|HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>('button,input,select,textarea').forEach(b=>{b.dataset.wasDisabled=String(b.disabled);b.disabled=true;});
 }
 function title(kicker:string,heading:string,description=''):string {
   return `<div class="page-title"><span class="eyebrow">${kicker}</span><h1>${heading}</h1>${description?`<p>${description}</p>`:''}</div>`;
 }
 function render():void {
-  if(screen==='home') renderHome();
+  if(screen==='session'&&historyStage!==null&&record)renderHistory();
+  else if(screen==='home') renderHome();
   else if(screen==='acceptance') renderAcceptance();
   else if(screen==='records') renderRecords();
   else renderSession();
@@ -114,6 +228,13 @@ function renderHome():void {
   bind('prepare-offline',async()=>{cacheReady=await prepareOffline(message=>{const p=$('#offline-progress');if(p)p.textContent=message;});notice=cacheReady?'资源准备完成。请再按清单验证断网重开。':'资源尚未全部准备完成，请保持联网后重试。';render();});
   bind('open-acceptance',()=>{screen='acceptance';notice='';render();});
   bind('open-records',async()=>{records=await allSessions();screen='records';notice='';render();});
+  if(resumeId){
+    const formPanel=document.getElementById('setup-form')?.parentElement;
+    formPanel?.insertAdjacentHTML('beforeend',`<div class="actions">${button('resume-session','继续刚才的测评','secondary')}</div>`);
+    const resumeButton=document.getElementById('resume-session') as HTMLButtonElement;
+    if(busy){resumeButton.dataset.wasDisabled='false';resumeButton.disabled=true;}
+    bind('resume-session',async()=>{if(resumeId)await openRecord(resumeId,true);});
+  }
 }
 async function preloadCards():Promise<void> {
   await Promise.all(Object.values(CARD_FILES).map(file=>new Promise<void>((resolve,reject)=>{const img=new Image();img.onload=()=>resolve();img.onerror=()=>reject(new Error('卡片未加载完成，请先联网准备资源。'));img.src=cardUrl(file);})));
@@ -132,7 +253,7 @@ async function beginSession():Promise<void> {
   if(plan&&plan.firstEmaDate!==setup.firstDate) throw new Error(`该编号首次EMA日期已保存为${plan.firstEmaDate}，请按原日期填写。`);
   if(!plan){plan=generatePlan(setup.id,setup.mode,setup.firstDate);await putPlan(plan);}
   record=makeSession(plan,setup.day);event(record,'session-start');
-  await persist();screen='session';readonlyRecord=false;downloaded=false;downloadConfirmed=false;symptomIndex=0;symptomDraft={};researcherOpen=false;render();
+  await persist();screen='session';historyStage=null;resumeId=record.sessionId;readonlyRecord=false;downloaded=false;downloadConfirmed=false;symptomIndex=0;symptomDraft={};researcherOpen=false;render();
 }
 function renderAcceptance():void {
   const rows:[keyof Pick<Acceptance,'audio'|'cards'|'timing'|'offline'|'export'>,string,string][]=[
@@ -155,28 +276,32 @@ function renderRecords():void {
   bind('home',()=>{screen='home';notice='';render();});
   root.querySelectorAll<HTMLButtonElement>('[data-session]').forEach(b=>b.addEventListener('click',()=>void act(()=>openRecord(b.dataset.session!))));
 }
-async function openRecord(sessionId:string):Promise<void> {
+async function openRecord(sessionId:string,internalNavigation=false):Promise<void> {
   const found=await loadSession(sessionId);if(!found)throw new Error('未找到这条记录。');
-  record=found;screen='session';researcherOpen=false;downloaded=false;downloadConfirmed=false;saveBlocked=false;
+  record=found;screen='session';historyStage=null;resumeId=found.status==='in-progress'?found.sessionId:null;researcherOpen=false;downloaded=false;downloadConfirmed=false;saveBlocked=false;
   const memoryInProgress=found.status==='in-progress'&&found.memory.delayCueAt===null&&found.memory.rounds.length>0;
   const pendingPlayback=found.events.some((item,index)=>item.kind==='word-playback-pending'&&
     !found.events.slice(index+1).some(later=>later.kind==='word-playback-end'&&later.details?.round===item.details?.round));
   const pendingStroop=found.events.some((item,index)=>item.kind==='stroop-pending'&&
-    !found.events.slice(index+1).some(later=>later.kind==='stroop-end'&&later.details?.kind===item.details?.kind));
+    !found.events.slice(index+1).some(later=>(later.kind==='stroop-end'||later.kind==='stroop-abandoned')&&later.details?.kind===item.details?.kind));
   let pageLeft=false;try{pageLeft=localStorage.getItem(`ema-reopen:${found.sessionId}`)!==null;}catch{/* The durable pending event remains the primary evidence. */}
   const running=found.phase==='stroop-running'||found.phase==='symbol-running'||found.phase==='delayed-recall'||
     (found.phase==='learning'&&found.memory.rounds.length>0&&found.memory.rounds.at(-1)?.answerEndedAt===null);
-  if(found.status==='in-progress'&&(running||pendingPlayback||pendingStroop||(memoryInProgress&&found.timeOrigin!==performance.timeOrigin)||
+  const samePageResume=internalNavigation&&found.timeOrigin===performance.timeOrigin&&!pageLeft;
+  if(found.status==='in-progress'&&((running&&!samePageResume)||pendingPlayback||pendingStroop||(memoryInProgress&&found.timeOrigin!==performance.timeOrigin)||
     (pageLeft&&found.phase==='learning'))){await interrupt('页面重新打开，原计时流程已终止。');return;}
   readonlyRecord=found.status!=='in-progress';
   if(found.status==='in-progress') {
     if(found.phase==='symptoms'){
       symptomDraft=found.symptoms??{};
-      for(const item of found.events){if(item.kind==='symptom-answer'&&item.details){const key=item.details.key as keyof Symptoms;const value=Number(item.details.value);if(SYMPTOM_ITEMS.some(s=>s.key===key)&&value>=1&&value<=5)symptomDraft[key]=value;}}
-      symptomIndex=SYMPTOM_ITEMS.findIndex(item=>!symptomDraft[item.key]);if(symptomIndex<0)symptomIndex=4;
+      for(const item of found.events){if(item.kind==='symptom-answer'&&item.details){const key=item.details.key as keyof Symptoms;const value=item.details.value===null?null:Number(item.details.value);if(SYMPTOM_ITEMS.some(s=>s.key===key)&&(value===null||(value>=1&&value<=5)))symptomDraft[key]=value;}}
+      symptomIndex=SYMPTOM_ITEMS.findIndex(item=>symptomDraft[item.key]===undefined);if(symptomIndex<0)symptomIndex=4;
+      const position=[...found.events].reverse().find(e=>e.kind==='symptom-position');if(position&&Number.isInteger(position.details?.index))symptomIndex=Number(position.details!.index);
     }
-    if(found.phase==='stroop-ready'||found.phase==='stroop-score')stroopKind=STROOP.find(k=>found.stroop[k]===null||found.stroop[k]!.correct===null)??'cw';
+    if(found.phase==='stroop-ready'||found.phase==='stroop-score')stroopKind=STROOP.find((k,i)=>!stageSkipped(i+2)&&(found.stroop[k]===null||found.stroop[k]!.correct===null))??'cw';
   }
+  event(found,'program-open',{runtimeVersion:APP_VERSION});
+  if(found.status==='in-progress')await persist();
   render();
 }
 function phaseNumber():number {
@@ -259,9 +384,16 @@ function renderLearningDecision():void {
 }
 function renderSymptoms():void {
   const item=SYMPTOM_ITEMS[symptomIndex];const selected=symptomDraft[item.key];
-  shell(`${steps()}${title(`当前感受 ${symptomIndex+1} / 5`,item.question)}<section class="panel"><div class="symptom-choices">${item.labels.map((label,i)=>`<button class="symptom-choice ${selected===i+1?'selected':''}" data-score="${i+1}" aria-pressed="${selected===i+1}"><span>${i+1}</span><strong>${label}</strong></button>`).join('')}</div><div class="actions">${button('symptom-next',symptomIndex===4?'保存并继续':'下一项','primary',!selected||saveBlocked)}</div><p class="field-help">请按患者当前的回答选择。睡眠一项询问昨晚。</p></section>`);
-  root.querySelectorAll<HTMLButtonElement>('[data-score]').forEach(b=>b.addEventListener('click',()=>{symptomDraft[item.key]=Number(b.dataset.score);render();}));
-  bind('symptom-next',async()=>{if(!symptomDraft[item.key])return;event(record!,'symptom-answer',{key:item.key,value:symptomDraft[item.key]});await persist();if(symptomIndex<4){symptomIndex++;render();return;}record!.symptoms=symptomDraft as Symptoms;event(record!,'symptoms-recorded');stroopKind='w';await transition('stroop-ready');});
+  shell(`${steps()}${title(`当前感受 ${symptomIndex+1} / 5`,item.question)}<section class="panel"><div class="symptom-slider-panel"><div id="slider-current" class="slider-current ${selected?'':'unselected'}" aria-live="polite">${selected?`<span class="slider-score">${selected}</span><span>${item.labels[selected-1]}</span>`:'请滑动圆点选择程度'}</div><input type="range" id="symptom-slider" min="1" max="5" step="1" value="${selected??3}" aria-label="${escape(item.question)}" aria-valuetext="${selected?escape(item.labels[selected-1]):'尚未作答'}" style="--slider-progress:${((selected??3)-1)*25}%"><div class="slider-labels">${item.labels.map((label,i)=>`<span data-slider-label="${i+1}" class="${selected===i+1?'selected':''}"><span class="slider-number">${i+1}</span><span>${label}</span></span>`).join('')}</div><p class="slider-help">拖动圆点到与你感受对应的位置。</p></div><div class="actions">${button('symptom-next',symptomIndex===4?'保存并继续':'下一项','primary',!selected||saveBlocked)}</div><p class="field-help">睡眠一项询问昨晚。中间圆点只是起始位置，需触摸选择后才记录。</p></section>`);
+  const slider=document.getElementById('symptom-slider') as HTMLInputElement;
+  const select=()=>{
+    const value=Number(slider.value);symptomDraft[item.key]=value;slider.style.setProperty('--slider-progress',`${(value-1)*25}%`);slider.setAttribute('aria-valuetext',item.labels[value-1]);
+    const label=document.getElementById('slider-current')!;label.classList.remove('unselected');label.innerHTML=`<span class="slider-score">${value}</span><span>${item.labels[value-1]}</span>`;
+    root.querySelectorAll<HTMLElement>('[data-slider-label]').forEach(el=>el.classList.toggle('selected',Number(el.dataset.sliderLabel)===value));
+    const next=document.getElementById('symptom-next') as HTMLButtonElement;next.disabled=saveBlocked||busy;
+  };
+  slider.addEventListener('input',select);slider.addEventListener('pointerup',select);slider.addEventListener('keyup',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key))select();});
+  bind('symptom-next',async()=>{if(!symptomDraft[item.key])return;event(record!,'symptom-answer',{key:item.key,value:symptomDraft[item.key]});record!.uiDraft=undefined;if(symptomIndex<4){symptomIndex++;event(record!,'symptom-position',{index:symptomIndex});await persist();render();return;}record!.symptoms=completeSymptoms();event(record!,'symptoms-recorded');stroopKind='w';await transition('stroop-ready');});
 }
 function renderStroopReady():void {
   const instruction=stroopKind==='w'?'请从左到右逐行读出每个字。':stroopKind==='c'?'请从左到右逐行说出色块的颜色。':'请说出字的颜色，不读字本身。';
@@ -291,7 +423,7 @@ async function startStroop():Promise<void> {
   timer=window.setInterval(()=>{const remaining=Math.max(0,timerDeadline-performance.now());const label=$('#stroop-time');if(label)label.textContent=`${Math.ceil(remaining/1000)} 秒`;if(remaining===0)void finishStroop();},50);
 }
 function renderStroopRunning():void {
-  shell(`<section class="task-fullscreen"><div class="task-topline"><strong>${CARD_NAMES[stroopKind]}</strong><span id="stroop-time">${Math.ceil(Math.max(0,timerDeadline-performance.now())/1000)} 秒</span></div><div class="card-stage"><img class="stroop-card" src="${cardUrl(CARD_FILES[stroopKind])}" alt="${CARD_NAMES[stroopKind]}任务卡"></div></section>`,'timed-main');
+  shell(`<section class="task-fullscreen"><div class="task-topline"><span>逐行从左到右</span><span id="stroop-time" class="task-timer">${Math.ceil(Math.max(0,timerDeadline-performance.now())/1000)} 秒</span></div><div class="card-stage"><img class="stroop-card" src="${cardUrl(CARD_FILES[stroopKind])}" alt="${CARD_NAMES[stroopKind]}任务矩阵"></div></section>`,'timed-main');
 }
 async function finishStroop():Promise<void> {
   if(!record||record.phase!=='stroop-running')return;
@@ -355,15 +487,16 @@ function renderSymbolRunning():void {
   shell(`<section class="symbol-stage"><div id="symbol-container" class="symbol-container" aria-label="符号搜索任务"></div><p class="symbol-loading">请按说明选择相同的配对。</p></section>`,'timed-main');
 }
 async function launchSymbol():Promise<void> {
-  const r=record!;const container=document.getElementById('symbol-container')!;
+  const r=record!,generation=++symbolGeneration;const container=document.getElementById('symbol-container')!;
   try {
     const controller=await runSymbolSearch(container,{seed:r.symbol.seed,
-      onTrial:async(trial)=>{if(r.status!=='in-progress')throw new Error('本次任务已中断。');r.symbol.trials.push(trial);event(r,'symbol-trial-saved',{trialIndex:trial.trialIndex});await persist();},
-      onEnd:async()=>{if(r.status!=='in-progress')return;stopClock();r.symbol.endedAt=new Date().toISOString();r.endedAt=new Date().toISOString();r.status='completed';r.phase='review';event(r,'symbol-end');symbolController=null;researcherOpen=true;await persist();render();},
-      onError:async(error)=>{await interrupt(`符号搜索未完成：${readableError(error)}`);},
+      onTrial:async(trial)=>{if(generation!==symbolGeneration)return;if(r.status!=='in-progress')throw new Error('本次任务已中断。');r.symbol.trials.push(trial);event(r,'symbol-trial-saved',{trialIndex:trial.trialIndex});await persist();},
+      onEnd:async()=>{if(generation!==symbolGeneration||r.status!=='in-progress')return;stopClock();r.symbol.endedAt=new Date().toISOString();r.endedAt=new Date().toISOString();r.status='completed';r.phase='review';event(r,'symbol-end');symbolController=null;researcherOpen=true;await persist();render();},
+      onError:async(error)=>{if(generation===symbolGeneration)await interrupt(`符号搜索未完成：${readableError(error)}`);},
+      onNavigate:(action)=>act(action==='home'?leaveForHome:action==='previous'?previousStep:skipStep),
     });
-    if(r.status!=='in-progress')controller.stop();else symbolController=controller;
-  }catch(error){if(r.status==='in-progress')await interrupt(`符号搜索未完成：${readableError(error)}`);throw error;}
+    if(generation!==symbolGeneration||r.status!=='in-progress')controller.stop();else symbolController=controller;
+  }catch(error){if(generation===symbolGeneration&&r.status==='in-progress')await interrupt(`符号搜索未完成：${readableError(error)}`);throw error;}
 }
 function number(value:number|null,digits=0):string {return value===null?'缺失':value.toFixed(digits);}
 function summaryTable(r:SessionRecord):string {
@@ -397,11 +530,19 @@ function renderInterrupted():void {
   bind('export-interrupted',async()=>{await downloadRecord();renderInterrupted();});
   bind('records',async()=>{if(saveBlocked)throw new Error('请先重试保存，避免丢失页面中的数据。');records=await allSessions();screen='records';notice='';render();});
 }
-function activelyTiming():boolean {return !!record&&record.status==='in-progress'&&['learning','stroop-running','symbol-running','delayed-recall'].includes(record.phase)&&(record.phase!=='learning'||learningPlaying||!!record.memory.rounds.at(-1)?.playbackEndedAt);}
+function activelyTiming():boolean {return screen==='session'&&historyStage===null&&!!record&&record.status==='in-progress'&&['learning','stroop-running','symbol-running','delayed-recall'].includes(record.phase)&&(record.phase!=='learning'||learningPlaying||!!record.memory.rounds.at(-1)?.playbackEndedAt);}
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&activelyTiming())void interrupt('测评期间切到后台或锁屏，计时任务已终止。');});
 window.addEventListener('pagehide',()=>{if(record?.status==='in-progress'){try{localStorage.setItem(`ema-reopen:${record.sessionId}`,new Date().toISOString());}catch{/* Storage read/write failure is handled when opening the record. */}if(activelyTiming())void interrupt('测评页面关闭或离开，计时任务已终止。');}});
-screenOrientation().addEventListener?.('change',()=>{if(activelyTiming())void interrupt('计时任务中屏幕方向改变，本次任务已终止。');});
-window.visualViewport?.addEventListener('resize',()=>{if(activelyTiming()&&window.visualViewport?.scale!==1)void interrupt('计时任务中页面被缩放，本次任务已终止。');});
+let lastLandscape=window.innerWidth>=window.innerHeight;
+function noteOrientation():void {
+  const landscape=window.innerWidth>=window.innerHeight;if(landscape===lastLandscape)return;lastLandscape=landscape;
+  if(screen==='session'&&record?.status==='in-progress'){
+    event(record,'orientation-change',{landscape,width:window.innerWidth,height:window.innerHeight,phase:record.phase,timingContinues:true});
+    void persist().catch(error=>{failure=readableError(error);updateBanners();});
+  }
+}
+screenOrientation().addEventListener?.('change',noteOrientation);window.addEventListener('resize',noteOrientation);
+window.visualViewport?.addEventListener('resize',()=>{if(activelyTiming()&&window.visualViewport?.scale!==1){event(record!,'viewport-scale-change',{scale:window.visualViewport?.scale});void persist().catch(error=>{failure=readableError(error);updateBanners();});}});
 function screenOrientation():EventTarget {return window.screen.orientation??window;}
 window.addEventListener('beforeunload',e=>{if(record?.status==='in-progress'||saveBlocked){e.preventDefault();e.returnValue='';}});
 

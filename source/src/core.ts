@@ -96,6 +96,7 @@ export function validateStroop(correct: number, repeatCount: number): void {
 export function scorable(record: SessionRecord): boolean {
   const d=derived(record);
   return record.status==='completed' && record.interruptions.length===0 &&
+    !record.events.some(e=>e.kind==='step-skipped'&&[0,2,3,4,5,6].includes(Number(e.details?.stage))) &&
     d.memory!==null && d.ig!==null && d.ss_n===12 && d.ss_rt!==null;
 }
 export function localDate(at: Date = new Date()): string {

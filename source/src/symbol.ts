@@ -10,6 +10,7 @@ export interface SymbolSearchOptions {
   onTrial: (trial: SymbolTrial) => void | Promise<void>;
   onEnd: () => void | Promise<void>;
   onError: (error: Error) => void;
+  onNavigate?: (action: 'home' | 'previous' | 'skip') => void | Promise<void>;
 }
 
 /** Explicit configuration: SDK defaults are not the study configuration. */
@@ -121,7 +122,9 @@ export async function runSymbolSearch(
   abort.type = 'button';
   abort.className = 'symbol-abort';
   abort.textContent = '中止本次任务';
-  overlay.append(root, side, abort);
+  const navigation=document.createElement('nav');navigation.className='symbol-navigation';navigation.setAttribute('aria-label','任务导航');
+  if(options.onNavigate){for(const [action,label] of [['home','返回主页'],['previous','返回上一步'],['skip','跳过这一步']] as const){const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.symbolNav=action;b.addEventListener('click',()=>{void options.onNavigate?.(action);});navigation.append(b);}}
+  overlay.append(root, side, options.onNavigate?navigation:abort);
   const style = document.createElement('style');
   const styleMarker = `symbol-session-${root.id}`;
   const sheet = `/* ${styleMarker} */
@@ -139,8 +142,10 @@ export async function runSymbolSearch(
     .symbol-directions p {margin:12px 0;}
     .symbol-directions p[role=status] {font-size:17px;color:#536a78;}
     .symbol-abort {position:absolute;right:20px;top:20px;min-height:48px;padding:8px 18px;border:1px solid #98aab4;background:white;border-radius:8px;color:#344854;font-size:17px;}
+    .symbol-navigation {position:absolute;right:12px;top:10px;display:flex;gap:8px;}
+    .symbol-navigation button {min-height:44px;padding:7px 12px;border:1px solid #98aab4;background:white;border-radius:8px;color:#344854;font:17px system-ui,sans-serif;}
     @keyframes symbol-loading-spin {to{transform:rotate(360deg);}}
-    @media(max-width:760px) {.symbol-directions {left:12px;top:8px;transform:none;width:calc(100vw - 155px);font-size:15px;line-height:1.3;}.symbol-directions h2{font-size:18px;margin:0 0 4px;}.symbol-directions p{margin:4px 0;}.symbol-directions p[role=status]{font-size:13px;}.symbol-abort{right:8px;top:8px;font-size:14px;padding:6px 10px;}}
+    @media(max-width:760px) {.symbol-directions {left:12px;top:68px;transform:none;width:calc(100vw - 24px);font-size:14px;line-height:1.3;pointer-events:none;}.symbol-directions h2{font-size:18px;margin:0 0 4px;}.symbol-directions p{margin:4px 0;}.symbol-directions p[role=status]{font-size:13px;}.symbol-abort{right:8px;top:8px;font-size:14px;padding:6px 10px;}.symbol-navigation{left:8px;right:8px;justify-content:flex-end;}.symbol-navigation button{font-size:14px;padding:6px 8px;}}
   `;
   style.textContent = sheet;
   document.head.append(style);

@@ -1,4 +1,4 @@
-const BUILD_ID="bc96de22c5a0da66";
+const BUILD_ID="cf51a438f627b786";
 /* No patient records are stored or transmitted by this worker. */
 const CACHE='icu-ema-static-'+BUILD_ID;
 const BASE=self.registration.scope;
