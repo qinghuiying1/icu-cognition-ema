@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "appVersion": "1.0.0-rc.1",
+  "scope": "Runtime JavaScript/WASM/font/image dependency licences; no build tool binary is distributed.",
+  "jszipLicenseChoice": "MIT",
+  "canvaskit": {
+    "version": "0.41.1",
+    "asset": "assets/symbol-search/canvaskit-0.41.1.wasm",
+    "bytes": 7159342,
+    "sha256": "bd669c88bd033eaf62d673103a42231a737c6d12e4cc99f8548b2784b5772430",
+    "byteIdenticalOfficialPackageFile": "canvaskit-wasm@0.41.1/bin/canvaskit.wasm"
+  },
+  "files": [
+    {
+      "package": "@m2c2kit/core",
+      "version": "0.3.37",
+      "declaredLicense": "Apache-2.0",
+      "sourceFile": "LICENSE",
+      "file": "m2c2kit-core-0.3.37-LICENSE.txt",
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "bytes": 555
+    },
+    {
+      "package": "@m2c2kit/session",
+      "version": "0.3.19",
+      "declaredLicense": "Apache-2.0",
+      "sourceFile": "LICENSE",
+      "file": "m2c2kit-session-0.3.19-LICENSE.txt",
+      "sha256": "3030b56d594a2cf0b6162935665d4f4f52e998a499f404c50177cca95d8c3e84",
+      "bytes": 555
+    },
+    {
+      "package": "@m2c2kit/addons",
+      "version": "0.3.36",
+      "declaredLicense": "Apache-2.0",
+      "sourceFile": "LICENSE",
+      "file": "m2c2kit-addons-0.3.36-LICENSE.txt",
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "bytes": 555
+    },
+    {
+      "package": "@m2c2kit/assessment-symbol-search",
+      "version": "0.8.35",
+      "declaredLicense": "Apache-2.0",
+      "sourceFile": "LICENSE",
+      "file": "m2c2kit-assessment-symbol-search-0.8.35-LICENSE.txt",
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "bytes": 555
+    },
+    {
+      "package": "typescript",
+      "version": "5.9.3",
+      "declaredLicense": "Apache-2.0",
+      "sourceFile": "LICENSE.txt",
+      "file": "Apache-2.0.txt",
+      "sha256": "a7d00bfd54525bc694b6e32f64c7ebcf5e6b7ae3657be5cc12767bce74654a47",
+      "bytes": 9197
+    },
+    {
+      "package": "canvaskit-wasm",
+      "version": "0.41.1",
+      "declaredLicense": "BSD-3-Clause",
+      "sourceFile": "LICENSE",
+      "file": "canvaskit-wasm-0.41.1-LICENSE.txt",
+      "sha256": "d27678cba0d529e77201e2d2a053628143e986aad8f1e77f7039ad4366c8f978",
+      "bytes": 1635
+    },
+    {
+      "package": "jszip",
+      "version": "3.10.1",
+      "declaredLicense": "(MIT OR GPL-3.0-or-later)",
+      "sourceFile": "LICENSE.markdown",
+      "file": "jszip-3.10.1-LICENSE.markdown",
+      "sha256": "566c953c6090b1218ca6217dd7359d45dde46581968586dc607d59a78af6a9c4",
+      "bytes": 33753
+    },
+    {
+      "package": "pako",
+      "version": "1.0.11",
+      "declaredLicense": "(MIT AND Zlib)",
+      "sourceFile": "LICENSE",
+      "file": "pako-1.0.11-LICENSE.txt",
+      "sha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539",
+      "bytes": 1104
+    },
+    {
+      "package": "lie",
+      "version": "3.3.0",
+      "declaredLicense": "MIT",
+      "sourceFile": "license.md",
+      "file": "lie-3.3.0-LICENSE.txt",
+      "sha256": "5c81b0caa98593408b03125efa25efe622341ed87ae55561968828cd887d64a4",
+      "bytes": 1084
+    },
+    {
+      "package": "immediate",
+      "version": "3.0.6",
+      "declaredLicense": "MIT",
+      "sourceFile": "LICENSE.txt",
+      "file": "immediate-3.0.6-LICENSE.txt",
+      "sha256": "809e66de579fb7d92503848bbe6d1f348f4f6521a71e5d294fe7cc0c87a3b4ff",
+      "bytes": 1115
+    },
+    {
+      "package": "setimmediate",
+      "version": "1.0.5",
+      "declaredLicense": "MIT",
+      "sourceFile": "LICENSE.txt",
+      "file": "setimmediate-1.0.5-LICENSE.txt",
+      "sha256": "c4b4ad3a5746f1f5249a6dd90396ec519264e1bb02e01e48a6522c48a3a97cb4",
+      "bytes": 1103
+    },
+    {
+      "package": "readable-stream",
+      "version": "2.3.8",
+      "declaredLicense": "MIT",
+      "sourceFile": "LICENSE",
+      "file": "readable-stream-2.3.8-LICENSE.txt",
+      "sha256": "ec62dc96da0099b87f4511736c87309335527fb7031639493e06c95728dc8c54",
+      "bytes": 2337
+    },
+    {
+      "package": "core-util-is",
+      "version": "1.0.3",
+      "declaredLicense": "MIT",
+      "sourceFile": "LICENSE",
+      "file": "core-util-is-1.0.3-LICENSE.txt",
+      "sha256": "33b734d60042d0fe0c92dd1fc1e874193a1c899ec3e276a2eb935d2d0bf5b710",
+      "bytes": 1077
+    },
+    {
+      "package": "inherits",
+      "version": "2.0.4",
+      "declaredLicense": "ISC",
+      "sourceFile": "LICENSE",
+      "file": "inherits-2.0.4-LICENSE.txt",
+      "sha256": "5ffe28e7ade7d8f10d85d5337a73fd793dac5c462fb9a28fbf8c5046c7fbca3b",
+      "bytes": 749
+    },
+    {
+      "package": "process-nextick-args",
+      "version": "2.0.1",
+      "declaredLicense": "MIT",
+      "sourceFile": "license.md",
+      "file": "process-nextick-args-2.0.1-LICENSE.txt",
+      "sha256": "ecdccbcf39024f624ded480c01c0b25458e1eca8f26ecf040933865ce56d9a4f",
+      "bytes": 1064
+    },
+    {
+      "package": "safe-buffer",
+      "version": "5.1.2",
+      "declaredLicense": "MIT",
+      "sourceFile": "LICENSE",
+      "file": "safe-buffer-5.1.2-LICENSE.txt",
+      "sha256": "c7cc929b57080f4b9d0c6cf57669f0463fc5b39906344dfc8d3bc43426b30eac",
+      "bytes": 1081
+    },
+    {
+      "package": "string_decoder",
+      "version": "1.1.1",
+      "declaredLicense": "MIT",
+      "sourceFile": "LICENSE",
+      "file": "string_decoder-1.1.1-LICENSE.txt",
+      "sha256": "11f2aafb37d06b3ee5bdaf06e9811141d0da05263c316f3d627f45c20d43261b",
+      "bytes": 2338
+    },
+    {
+      "package": "util-deprecate",
+      "version": "1.0.2",
+      "declaredLicense": "MIT",
+      "sourceFile": "LICENSE",
+      "file": "util-deprecate-1.0.2-LICENSE.txt",
+      "sha256": "0154425673db15cdfa80ecba2c9b1f1a867f7197a006764712849bfc3a93cbb7",
+      "bytes": 1102
+    },
+    {
+      "package": "isarray",
+      "version": "1.0.0",
+      "declaredLicense": "MIT",
+      "sourceFile": "README.md, original section starting ## License",
+      "file": "isarray-1.0.0-README-LICENSE.txt",
+      "sha256": "66aa9feab8bb39aceebd69f2a357015d57ceab486d3c7a19ff8d3d4110a6d101",
+      "bytes": 1108
+    },
+    {
+      "package": "pako",
+      "version": "1.0.11",
+      "declaredLicense": "Zlib",
+      "sourceFile": "lib/zlib/adler32.js, original copyright and licence header; same header in lib/zlib/*.js",
+      "file": "pako-1.0.11-ZLIB-source-header.txt",
+      "sha256": "170d7d544d380b38d5f76ab5eda29475b44ef537f4564163d6d9bece85c51c13",
+      "bytes": 960
+    },
+    {
+      "package": "@m2c2kit/data-calc",
+      "version": "0.8.8",
+      "declaredLicense": "Apache-2.0",
+      "sourceFile": "package.json, exact selected metadata",
+      "file": "m2c2kit-data-calc-0.8.8-metadata.json",
+      "sha256": "79813a59982fd46f6ee48a88b6d1d325b71a1c601eca253fd0bc58f4fa171924",
+      "bytes": 414
+    },
+    {
+      "package": "m2c2kit project",
+      "version": "official root notice fetched 2026-10-14, not version-specific package file",
+      "declaredLicense": "Apache-2.0",
+      "sourceFile": "https://raw.githubusercontent.com/m2c2-project/m2c2kit/main/LICENSE",
+      "file": "m2c2kit-project-root-LICENSE.txt",
+      "sha256": "0a86b2af898a62531e81fad262191b720c34b1887e747e1a868382c05490cb31",
+      "bytes": 555
+    },
+    {
+      "package": "Roboto",
+      "version": "distributed with assessment-symbol-search@0.8.35",
+      "sourceFile": "assets/symbol-search/fonts/roboto/LICENSE.txt",
+      "file": "Roboto-Apache-2.0-LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "package": "Noto Sans Japanese",
+      "version": "distributed with assessment-symbol-search@0.8.35",
+      "sourceFile": "assets/symbol-search/fonts/noto-sans-japanese/OFL.txt",
+      "file": "NotoSansJP-OFL.txt",
+      "sha256": "2053744949540e32c4bc1e2cea901edf80102d694fe52b424f2769aa8fe8bec2",
+      "bytes": 4388
+    },
+    {
+      "package": "symbol-search images",
+      "version": "distributed with assessment-symbol-search@0.8.35",
+      "sourceFile": "assets/symbol-search/images/LICENSE.pdf",
+      "file": "symbol-search-images-LICENSE.pdf",
+      "sha256": "d26fa3d12565ea78a83077b53fb9f035f0292657b94250aec5c7624adbe5d7d2",
+      "bytes": 41590
+    }
+  ]
+}

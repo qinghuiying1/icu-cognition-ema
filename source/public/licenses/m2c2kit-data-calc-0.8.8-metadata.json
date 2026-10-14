@@ -1,0 +1,14 @@
+{
+  "name": "@m2c2kit/data-calc",
+  "version": "0.8.8",
+  "license": "Apache-2.0",
+  "authorName": "Scott T. Yabiku",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m2c2-project/m2c2kit.git",
+    "directory": "packages/data-calc"
+  },
+  "upstreamLicenseFileIncludedInPackage": false,
+  "licenceTermsFile": "Apache-2.0.txt",
+  "projectCopyrightNoticeFile": "m2c2kit-project-root-LICENSE.txt"
+}

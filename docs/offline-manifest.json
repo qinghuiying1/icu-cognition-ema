@@ -1,0 +1,526 @@
+{
+  "buildId": "bc96de22c5a0da66",
+  "appVersion": "1.0.0-rc.1",
+  "assets": [
+    {
+      "url": ".nojekyll",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "url": "assets/index-BOI0_NuF.js",
+      "sha256": "242328d765c171c4b0825d196db00d335896cd3b799132a6077088ffc1445366",
+      "bytes": 25525
+    },
+    {
+      "url": "assets/index-CuNfS24b.js",
+      "sha256": "e84376f0f80c349fc4a84c695ff0c7d4610cfaa1d93a2066537b7a8d498f2556",
+      "bytes": 112892
+    },
+    {
+      "url": "assets/index-CvhDztE9.js",
+      "sha256": "b920433df6682aaa666e5ddeb0624c395c06331cd684909bf734ea376b170f8b",
+      "bytes": 315043
+    },
+    {
+      "url": "assets/index-D09YcXMA.css",
+      "sha256": "2d0a8cb707eb17329f5d0295af52c230fc4867d6fd5ad84cff6dda0a9c3adfc6",
+      "bytes": 12685
+    },
+    {
+      "url": "assets/index-Dyeje12B.js",
+      "sha256": "e8c358bee40d15c6fb6271ad6221ca03fb1a02dcf642fea310da1e0bfe3214ae",
+      "bytes": 155129
+    },
+    {
+      "url": "assets/symbol-search/LICENSE-core.txt",
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "bytes": 555
+    },
+    {
+      "url": "assets/symbol-search/LICENSE-symbol-search.txt",
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "bytes": 555
+    },
+    {
+      "url": "assets/symbol-search/canvaskit-0.41.1.wasm",
+      "sha256": "bd669c88bd033eaf62d673103a42231a737c6d12e4cc99f8548b2784b5772430",
+      "bytes": 7159342
+    },
+    {
+      "url": "assets/symbol-search/fonts/noto-sans-japanese/NotoSansJP-Regular.ttf",
+      "sha256": "7c8597677e9fac0f54d7848ad18bc6a708dfb5baa4ebf4bd91e66efcca313bf3",
+      "bytes": 5733060
+    },
+    {
+      "url": "assets/symbol-search/fonts/noto-sans-japanese/OFL.txt",
+      "sha256": "2053744949540e32c4bc1e2cea901edf80102d694fe52b424f2769aa8fe8bec2",
+      "bytes": 4388
+    },
+    {
+      "url": "assets/symbol-search/fonts/roboto/LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "url": "assets/symbol-search/fonts/roboto/Roboto-Regular.ttf",
+      "sha256": "319cff6e7a31f0f2a41c475dca42890aa5d19fe16017e2290f8c1d4e14f76481",
+      "bytes": 168260
+    },
+    {
+      "url": "assets/symbol-search/images/LICENSE.pdf",
+      "sha256": "d26fa3d12565ea78a83077b53fb9f035f0292657b94250aec5c7624adbe5d7d2",
+      "bytes": 41590
+    },
+    {
+      "url": "assets/symbol-search/images/circle-x.svg",
+      "sha256": "e2d327cbdcb979504197c2fc53a660ef35589dcce76cc58ad6e8aa81701b10a9",
+      "bytes": 688
+    },
+    {
+      "url": "assets/symbol-search/images/gameImage.de-DE.png",
+      "sha256": "cc54c0c82aa71d877e6f7b2430355dc9c8a4d1161ed63b1de9fd2dfd70a6388e",
+      "bytes": 57634
+    },
+    {
+      "url": "assets/symbol-search/images/gameImage.es-MX.png",
+      "sha256": "81b14808afb190aa866aaea5bd70b3f20df1de9e6d7ba7d9c1c1085ac3e83544",
+      "bytes": 53494
+    },
+    {
+      "url": "assets/symbol-search/images/gameImage.fr-FR.png",
+      "sha256": "f5713abf4faa83d16f07ae09f4ef7eda54778b45f3db16fd4e96e066e9ce9fdf",
+      "bytes": 55325
+    },
+    {
+      "url": "assets/symbol-search/images/gameImage.it-IT.png",
+      "sha256": "3ef08b93e5c1fd57243dc000d8042a52eb476bf58f8e2e885b14efa548ee7dea",
+      "bytes": 50735
+    },
+    {
+      "url": "assets/symbol-search/images/gameImage.jp-JP.png",
+      "sha256": "fba373583183146284d5d0ee0e780a481486369b7c5d216a00be9c4f2347a587",
+      "bytes": 54746
+    },
+    {
+      "url": "assets/symbol-search/images/gameImage.png",
+      "sha256": "68a348040b3c7e03148e4209ca9ed8ea354cff65f520d1f7e3407a21c33440bf",
+      "bytes": 51770
+    },
+    {
+      "url": "assets/symbol-search/images/gameImageOutlinedCards.de-DE.png",
+      "sha256": "bdb3a565333e3326d3c737cb31af34c20fc8605ffd5baf77726a2754249c7dba",
+      "bytes": 57762
+    },
+    {
+      "url": "assets/symbol-search/images/gameImageOutlinedCards.es-MX.png",
+      "sha256": "3b1180c81cddfd6e317d8170d0db3cb6a16d0f07827f4354dc2686263abd2bf6",
+      "bytes": 57605
+    },
+    {
+      "url": "assets/symbol-search/images/gameImageOutlinedCards.fr-FR.png",
+      "sha256": "6804a1a03cc8bd954e778b2eef82511759367351cd3a0b46972f589611e0f555",
+      "bytes": 59628
+    },
+    {
+      "url": "assets/symbol-search/images/gameImageOutlinedCards.it-IT.png",
+      "sha256": "e3dedc482e3c3063968aae6579f28dd9cd45787cf0a099fccf7636037a446ecc",
+      "bytes": 50868
+    },
+    {
+      "url": "assets/symbol-search/images/gameImageOutlinedCards.jp-JP.png",
+      "sha256": "7856bd3a8eaa7d8b91eb0d08888a7179bf9e6ab2c8fafbef3f31e6b480d8a502",
+      "bytes": 54881
+    },
+    {
+      "url": "assets/symbol-search/images/gameImageOutlinedCards.png",
+      "sha256": "034da0b326abacfb40c6db4fa608bef3701c61ae5f3ddfd7e1cfe770d7a53e8b",
+      "bytes": 51902
+    },
+    {
+      "url": "assets/symbol-search/images/ss-01.svg",
+      "sha256": "4d49eeed5780a5f47aac7c60b3d23e427c6eb58cf03570935abd90620a8067b2",
+      "bytes": 3211
+    },
+    {
+      "url": "assets/symbol-search/images/ss-02.svg",
+      "sha256": "f1e5e9dee8b5da81d310592a3eaca33c61148b9da2e7fb63ddbe483a0d989a03",
+      "bytes": 2508
+    },
+    {
+      "url": "assets/symbol-search/images/ss-03.svg",
+      "sha256": "025d72d04e71842da74447547e558c47a46adec7349182b38c62d64c0b7c69e4",
+      "bytes": 8443
+    },
+    {
+      "url": "assets/symbol-search/images/ss-04.svg",
+      "sha256": "d4837150ef3034a54749c17219a4a93da86eff5c615aeded7d8d7dd0f3a20068",
+      "bytes": 1018
+    },
+    {
+      "url": "assets/symbol-search/images/ss-05.svg",
+      "sha256": "9e8fb33ba829e06f820b431acdf859fdcacd274d27ca4d35954f38ed3791782a",
+      "bytes": 4317
+    },
+    {
+      "url": "assets/symbol-search/images/ss-06.svg",
+      "sha256": "9940dd6c06a9fe501b3779287b6ffae4cba84b36e80fdbf836e97b3fa3add59c",
+      "bytes": 1729
+    },
+    {
+      "url": "assets/symbol-search/images/ss-07.svg",
+      "sha256": "70cf5865f5a06ec420f19132d18712d7deadcb9f681ad4227ee58315384b366e",
+      "bytes": 2606
+    },
+    {
+      "url": "assets/symbol-search/images/ss-08.svg",
+      "sha256": "863b3a6fffe4f255b8beb9dbef8e54b0a19ffecde667885e04f7339e89f5bf11",
+      "bytes": 3696
+    },
+    {
+      "url": "assets/symbol-search/images/ss-09.svg",
+      "sha256": "16f25a58b754ab40948ddcb21f69b41b889abcf231f56a4b9269ca333c3fec6d",
+      "bytes": 2148
+    },
+    {
+      "url": "assets/symbol-search/images/ss-10.svg",
+      "sha256": "b2222d9680f58935edf09ac181fe3fcee24dda9f298011770b99a41cbb94d191",
+      "bytes": 5013
+    },
+    {
+      "url": "assets/symbol-search/images/ss-11.svg",
+      "sha256": "682cdbf43326ec4f26195397b449b5bd1dd4813c3299d2c643ad72988dd3d80a",
+      "bytes": 2444
+    },
+    {
+      "url": "assets/symbol-search/images/ss-12.svg",
+      "sha256": "f63cadd94ef6056b6c10b3ddc0903e6ccf91a15683199e4841a97616aba751e9",
+      "bytes": 2375
+    },
+    {
+      "url": "assets/symbol-search/images/ss-13.svg",
+      "sha256": "fed48971f671eb03c63a1315657418158ed488ceabe3ebfed9216b28645f4880",
+      "bytes": 3737
+    },
+    {
+      "url": "assets/symbol-search/images/ss-14.svg",
+      "sha256": "dda7d8789fcf20b305cae74f1b9e5650f6924285b8bc69b6455138d8623a07bc",
+      "bytes": 1520
+    },
+    {
+      "url": "assets/symbol-search/images/ss-15.svg",
+      "sha256": "5212321a3fbda5cb49802b6cf751c2961d333529e2ad57bc7d3b42d00defa92e",
+      "bytes": 1632
+    },
+    {
+      "url": "assets/symbol-search/images/ss-16.svg",
+      "sha256": "cddfc6716ac42cdc0e3fe0dc0a80987ad51da10281a33bdd4b31a8ef551b1361",
+      "bytes": 3070
+    },
+    {
+      "url": "assets/symbol-search/images/ss-17.svg",
+      "sha256": "7033365618bdeb7d4d1c3d6bcc5ea572cf8d44ad6accb3231d47a9560fdb0390",
+      "bytes": 2947
+    },
+    {
+      "url": "assets/symbol-search/images/ss-18.svg",
+      "sha256": "3ea46131ad336c4101161b9d64bc87e925fc2d0d2a154bda7e56f1c935e38fc7",
+      "bytes": 1097
+    },
+    {
+      "url": "assets/symbol-search/images/ss-19.svg",
+      "sha256": "e642b660d41bfaf12bfe1ee03c025baf3c21c75a08032e5e9a14028e350af7af",
+      "bytes": 3025
+    },
+    {
+      "url": "assets/symbol-search/images/ss-20.svg",
+      "sha256": "cac034f3e859e05564db7cb20bad6ade7a205e99abbb33e7aa8085291a3ce31a",
+      "bytes": 1290
+    },
+    {
+      "url": "assets/symbol-search/images/ss-21.svg",
+      "sha256": "f8a928c6e110722e3ebfe38654b4966919e7a1c9f30257829c863b43fa88080d",
+      "bytes": 680
+    },
+    {
+      "url": "assets/symbol-search/images/ss-22.svg",
+      "sha256": "26c7976485be7a9583368b5aae5e911087a1d4fd6901ad1ace8042abe2024b28",
+      "bytes": 1054
+    },
+    {
+      "url": "assets/symbol-search/images/ss-23.svg",
+      "sha256": "3aa31fe9e13041f3f3fe37229cbb91e66700092bf09660ba0806976cac675ce9",
+      "bytes": 3073
+    },
+    {
+      "url": "assets/symbol-search/images/ss-24.svg",
+      "sha256": "6dd82385d126553eecbf2ba51a9b814197accd76cee918755eca27fa6b1e5673",
+      "bytes": 1872
+    },
+    {
+      "url": "assets/symbol-search/images/ssintroImage.png",
+      "sha256": "381dd6f54b113318ef7d9de8f136e6c749e79bdd863845d28221e33606ebaf3e",
+      "bytes": 24869
+    },
+    {
+      "url": "assets/symbol-search/images/stopwatch.svg",
+      "sha256": "f9b10a981d1d5680c23ce1a344362a76ec06e75fff1b43d840296773d545fbee",
+      "bytes": 10944
+    },
+    {
+      "url": "assets/symbol-search/material-manifest.json",
+      "sha256": "689ea5b747a6a05af4a647b43e48d1a948a7731444100fc4c35c20e67b189dcc",
+      "bytes": 10573
+    },
+    {
+      "url": "audio/baihe.wav",
+      "sha256": "878423dc39bb31bff14a755d4aa481daf4b3bcd9d9fdde678ed286645103c58f",
+      "bytes": 38528
+    },
+    {
+      "url": "audio/changku.wav",
+      "sha256": "18111df282a4753598defcc034e109c8e9c550f26c2f7a68be5a8b9588ccc53d",
+      "bytes": 34570
+    },
+    {
+      "url": "audio/dayi.wav",
+      "sha256": "3e6cb84146ffceb6f01cc37180bb5757ed05de84dd681939e2296d2ff5ff7ebd",
+      "bytes": 33208
+    },
+    {
+      "url": "audio/delay-cue.wav",
+      "sha256": "060d1de19c2eacc9cd0f81fb70d17429e4544fb1be4b008881756d79e302e9cf",
+      "bytes": 143268
+    },
+    {
+      "url": "audio/haitang.wav",
+      "sha256": "b47e5c30db772acbf5dd12457793eb00058a2a5065b72f8e8f8bed8283e7e06d",
+      "bytes": 40120
+    },
+    {
+      "url": "audio/lamei.wav",
+      "sha256": "d13c6e234cea4d15373acc99c1fde41f4834793d2485838ea268981efaf8f3c6",
+      "bytes": 36158
+    },
+    {
+      "url": "audio/lvshi.wav",
+      "sha256": "7518a64fc412b0ca5a4696024725cdb6d18e961645d7de8d3f87bf3f3d73def3",
+      "bytes": 37482
+    },
+    {
+      "url": "audio/mugong.wav",
+      "sha256": "5601a9c2f141d2a4203338e05bd5734bba944fba7ff907a50458c28e1178814f",
+      "bytes": 32944
+    },
+    {
+      "url": "audio/shibing.wav",
+      "sha256": "86b9c0ae3209dc765e6e8d501af931256b7bcb812c47de07f7034593b6f09dab",
+      "bytes": 35572
+    },
+    {
+      "url": "audio/shoutao.wav",
+      "sha256": "34ab3f31a5be0b79646648e4066932c1d72e67ec61d5159d615491368d0a3855",
+      "bytes": 35668
+    },
+    {
+      "url": "audio/siji.wav",
+      "sha256": "7a4b8965980f1985daa89c9e0a8c62cfe9711160f03aab7a5c97217affe339bc",
+      "bytes": 33672
+    },
+    {
+      "url": "audio/start.wav",
+      "sha256": "b83cb282771980224c8b39fbbef48e60c6b646ac3ba173738f7361f7c735ff8d",
+      "bytes": 38142
+    },
+    {
+      "url": "audio/stop.wav",
+      "sha256": "9e440389353821019c6021067e0414d9d2cef78544379efe715f5970f564e41c",
+      "bytes": 29120
+    },
+    {
+      "url": "audio/toujin.wav",
+      "sha256": "c7f780a9e45d90b8c0df716a0f3254c91240eb1986323aa3ee83c3af466eb95d",
+      "bytes": 35402
+    },
+    {
+      "url": "audio/yulan.wav",
+      "sha256": "0c0e92e792e596e7676d6b54f07f204e53fff8abf7b95d0b458734958532313a",
+      "bytes": 35730
+    },
+    {
+      "url": "cards/C.png",
+      "sha256": "a1ac7523a041513be3dadeb02713dcc54166aade691de6179f84147117899e47",
+      "bytes": 22864
+    },
+    {
+      "url": "cards/CW-practice.png",
+      "sha256": "3978cc502d26bdc752a82fa8c901f2b1a7ae0ab244fd5933db1bcab4af0770d7",
+      "bytes": 6196
+    },
+    {
+      "url": "cards/CW.png",
+      "sha256": "2323f0b5b5bf20d5a56e1a86176ab140039085f263c1e2357250e1be23035cbd",
+      "bytes": 31353
+    },
+    {
+      "url": "cards/W.png",
+      "sha256": "377e34e95bcec5a2dcbd12d19d21645b754c5d9b89c98f151202164fc04bdb32",
+      "bytes": 12535
+    },
+    {
+      "url": "favicon.svg",
+      "sha256": "e159db5baf03aad9309f80b411f87307bc6c899a3e1fa7809cd0df9e8d831436",
+      "bytes": 184
+    },
+    {
+      "url": "icon.svg",
+      "sha256": "b43bf49e4811b2a6478231df08cc4fde642d1933b4716aee3c87fa4e4fda950c",
+      "bytes": 190
+    },
+    {
+      "url": "index.html",
+      "sha256": "492df85e91b5289e0242c0bf34b625b871588c9316dc3c5383f4335a394b08d1",
+      "bytes": 626
+    },
+    {
+      "url": "licenses/Apache-2.0.txt",
+      "sha256": "a7d00bfd54525bc694b6e32f64c7ebcf5e6b7ae3657be5cc12767bce74654a47",
+      "bytes": 9197
+    },
+    {
+      "url": "licenses/NotoSansJP-OFL.txt",
+      "sha256": "2053744949540e32c4bc1e2cea901edf80102d694fe52b424f2769aa8fe8bec2",
+      "bytes": 4388
+    },
+    {
+      "url": "licenses/Roboto-Apache-2.0-LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "url": "licenses/canvaskit-wasm-0.41.1-LICENSE.txt",
+      "sha256": "d27678cba0d529e77201e2d2a053628143e986aad8f1e77f7039ad4366c8f978",
+      "bytes": 1635
+    },
+    {
+      "url": "licenses/core-util-is-1.0.3-LICENSE.txt",
+      "sha256": "33b734d60042d0fe0c92dd1fc1e874193a1c899ec3e276a2eb935d2d0bf5b710",
+      "bytes": 1077
+    },
+    {
+      "url": "licenses/immediate-3.0.6-LICENSE.txt",
+      "sha256": "809e66de579fb7d92503848bbe6d1f348f4f6521a71e5d294fe7cc0c87a3b4ff",
+      "bytes": 1115
+    },
+    {
+      "url": "licenses/inherits-2.0.4-LICENSE.txt",
+      "sha256": "5ffe28e7ade7d8f10d85d5337a73fd793dac5c462fb9a28fbf8c5046c7fbca3b",
+      "bytes": 749
+    },
+    {
+      "url": "licenses/isarray-1.0.0-README-LICENSE.txt",
+      "sha256": "66aa9feab8bb39aceebd69f2a357015d57ceab486d3c7a19ff8d3d4110a6d101",
+      "bytes": 1108
+    },
+    {
+      "url": "licenses/jszip-3.10.1-LICENSE.markdown",
+      "sha256": "566c953c6090b1218ca6217dd7359d45dde46581968586dc607d59a78af6a9c4",
+      "bytes": 33753
+    },
+    {
+      "url": "licenses/license-manifest.json",
+      "sha256": "95dfc05fa571cb83c22667041e3658bbe9de8141e00b291d963756d6a702d663",
+      "bytes": 8492
+    },
+    {
+      "url": "licenses/lie-3.3.0-LICENSE.txt",
+      "sha256": "5c81b0caa98593408b03125efa25efe622341ed87ae55561968828cd887d64a4",
+      "bytes": 1084
+    },
+    {
+      "url": "licenses/m2c2kit-addons-0.3.36-LICENSE.txt",
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "bytes": 555
+    },
+    {
+      "url": "licenses/m2c2kit-assessment-symbol-search-0.8.35-LICENSE.txt",
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "bytes": 555
+    },
+    {
+      "url": "licenses/m2c2kit-core-0.3.37-LICENSE.txt",
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "bytes": 555
+    },
+    {
+      "url": "licenses/m2c2kit-data-calc-0.8.8-metadata.json",
+      "sha256": "79813a59982fd46f6ee48a88b6d1d325b71a1c601eca253fd0bc58f4fa171924",
+      "bytes": 414
+    },
+    {
+      "url": "licenses/m2c2kit-project-root-LICENSE.txt",
+      "sha256": "0a86b2af898a62531e81fad262191b720c34b1887e747e1a868382c05490cb31",
+      "bytes": 555
+    },
+    {
+      "url": "licenses/m2c2kit-session-0.3.19-LICENSE.txt",
+      "sha256": "3030b56d594a2cf0b6162935665d4f4f52e998a499f404c50177cca95d8c3e84",
+      "bytes": 555
+    },
+    {
+      "url": "licenses/pako-1.0.11-LICENSE.txt",
+      "sha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539",
+      "bytes": 1104
+    },
+    {
+      "url": "licenses/pako-1.0.11-ZLIB-source-header.txt",
+      "sha256": "170d7d544d380b38d5f76ab5eda29475b44ef537f4564163d6d9bece85c51c13",
+      "bytes": 960
+    },
+    {
+      "url": "licenses/process-nextick-args-2.0.1-LICENSE.txt",
+      "sha256": "ecdccbcf39024f624ded480c01c0b25458e1eca8f26ecf040933865ce56d9a4f",
+      "bytes": 1064
+    },
+    {
+      "url": "licenses/readable-stream-2.3.8-LICENSE.txt",
+      "sha256": "ec62dc96da0099b87f4511736c87309335527fb7031639493e06c95728dc8c54",
+      "bytes": 2337
+    },
+    {
+      "url": "licenses/safe-buffer-5.1.2-LICENSE.txt",
+      "sha256": "c7cc929b57080f4b9d0c6cf57669f0463fc5b39906344dfc8d3bc43426b30eac",
+      "bytes": 1081
+    },
+    {
+      "url": "licenses/setimmediate-1.0.5-LICENSE.txt",
+      "sha256": "c4b4ad3a5746f1f5249a6dd90396ec519264e1bb02e01e48a6522c48a3a97cb4",
+      "bytes": 1103
+    },
+    {
+      "url": "licenses/string_decoder-1.1.1-LICENSE.txt",
+      "sha256": "11f2aafb37d06b3ee5bdaf06e9811141d0da05263c316f3d627f45c20d43261b",
+      "bytes": 2338
+    },
+    {
+      "url": "licenses/symbol-search-images-LICENSE.pdf",
+      "sha256": "d26fa3d12565ea78a83077b53fb9f035f0292657b94250aec5c7624adbe5d7d2",
+      "bytes": 41590
+    },
+    {
+      "url": "licenses/util-deprecate-1.0.2-LICENSE.txt",
+      "sha256": "0154425673db15cdfa80ecba2c9b1f1a867f7197a006764712849bfc3a93cbb7",
+      "bytes": 1102
+    },
+    {
+      "url": "manifest.webmanifest",
+      "sha256": "6da71fc440610a787cc6bbbacd050aa0551d8aecd2736b48cd167fb83946477c",
+      "bytes": 281
+    },
+    {
+      "url": "material-manifest.json",
+      "sha256": "13ccd9183c15a55bcbc0a3af77a641955cacd68bd3bb8e068bfa2dc3cb5dc20c",
+      "bytes": 11437
+    }
+  ]
+}

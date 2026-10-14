@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "packages": {
+    "assessment": {
+      "version": "0.8.35",
+      "license": "Apache-2.0",
+      "source": "https://github.com/m2c2-project/m2c2kit/tree/main/packages/assessment-symbol-search"
+    },
+    "core": {
+      "version": "0.3.37",
+      "license": "Apache-2.0",
+      "source": "https://github.com/m2c2-project/m2c2kit/tree/main/packages/core"
+    }
+  },
+  "wasmVersion": "0.41.1",
+  "files": [
+    {
+      "file": "canvaskit-0.41.1.wasm",
+      "bytes": 7159342,
+      "sha256": "bd669c88bd033eaf62d673103a42231a737c6d12e4cc99f8548b2784b5772430",
+      "owner": "@m2c2kit/core@0.3.37"
+    },
+    {
+      "file": "fonts/noto-sans-japanese/NotoSansJP-Regular.ttf",
+      "bytes": 5733060,
+      "sha256": "7c8597677e9fac0f54d7848ad18bc6a708dfb5baa4ebf4bd91e66efcca313bf3",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "fonts/noto-sans-japanese/OFL.txt",
+      "bytes": 4388,
+      "sha256": "2053744949540e32c4bc1e2cea901edf80102d694fe52b424f2769aa8fe8bec2",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "fonts/roboto/LICENSE.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "fonts/roboto/Roboto-Regular.ttf",
+      "bytes": 168260,
+      "sha256": "319cff6e7a31f0f2a41c475dca42890aa5d19fe16017e2290f8c1d4e14f76481",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/circle-x.svg",
+      "bytes": 688,
+      "sha256": "e2d327cbdcb979504197c2fc53a660ef35589dcce76cc58ad6e8aa81701b10a9",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImage.de-DE.png",
+      "bytes": 57634,
+      "sha256": "cc54c0c82aa71d877e6f7b2430355dc9c8a4d1161ed63b1de9fd2dfd70a6388e",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImage.es-MX.png",
+      "bytes": 53494,
+      "sha256": "81b14808afb190aa866aaea5bd70b3f20df1de9e6d7ba7d9c1c1085ac3e83544",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImage.fr-FR.png",
+      "bytes": 55325,
+      "sha256": "f5713abf4faa83d16f07ae09f4ef7eda54778b45f3db16fd4e96e066e9ce9fdf",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImage.it-IT.png",
+      "bytes": 50735,
+      "sha256": "3ef08b93e5c1fd57243dc000d8042a52eb476bf58f8e2e885b14efa548ee7dea",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImage.jp-JP.png",
+      "bytes": 54746,
+      "sha256": "fba373583183146284d5d0ee0e780a481486369b7c5d216a00be9c4f2347a587",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImage.png",
+      "bytes": 51770,
+      "sha256": "68a348040b3c7e03148e4209ca9ed8ea354cff65f520d1f7e3407a21c33440bf",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImageOutlinedCards.de-DE.png",
+      "bytes": 57762,
+      "sha256": "bdb3a565333e3326d3c737cb31af34c20fc8605ffd5baf77726a2754249c7dba",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImageOutlinedCards.es-MX.png",
+      "bytes": 57605,
+      "sha256": "3b1180c81cddfd6e317d8170d0db3cb6a16d0f07827f4354dc2686263abd2bf6",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImageOutlinedCards.fr-FR.png",
+      "bytes": 59628,
+      "sha256": "6804a1a03cc8bd954e778b2eef82511759367351cd3a0b46972f589611e0f555",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImageOutlinedCards.it-IT.png",
+      "bytes": 50868,
+      "sha256": "e3dedc482e3c3063968aae6579f28dd9cd45787cf0a099fccf7636037a446ecc",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImageOutlinedCards.jp-JP.png",
+      "bytes": 54881,
+      "sha256": "7856bd3a8eaa7d8b91eb0d08888a7179bf9e6ab2c8fafbef3f31e6b480d8a502",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/gameImageOutlinedCards.png",
+      "bytes": 51902,
+      "sha256": "034da0b326abacfb40c6db4fa608bef3701c61ae5f3ddfd7e1cfe770d7a53e8b",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/LICENSE.pdf",
+      "bytes": 41590,
+      "sha256": "d26fa3d12565ea78a83077b53fb9f035f0292657b94250aec5c7624adbe5d7d2",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-01.svg",
+      "bytes": 3211,
+      "sha256": "4d49eeed5780a5f47aac7c60b3d23e427c6eb58cf03570935abd90620a8067b2",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-02.svg",
+      "bytes": 2508,
+      "sha256": "f1e5e9dee8b5da81d310592a3eaca33c61148b9da2e7fb63ddbe483a0d989a03",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-03.svg",
+      "bytes": 8443,
+      "sha256": "025d72d04e71842da74447547e558c47a46adec7349182b38c62d64c0b7c69e4",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-04.svg",
+      "bytes": 1018,
+      "sha256": "d4837150ef3034a54749c17219a4a93da86eff5c615aeded7d8d7dd0f3a20068",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-05.svg",
+      "bytes": 4317,
+      "sha256": "9e8fb33ba829e06f820b431acdf859fdcacd274d27ca4d35954f38ed3791782a",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-06.svg",
+      "bytes": 1729,
+      "sha256": "9940dd6c06a9fe501b3779287b6ffae4cba84b36e80fdbf836e97b3fa3add59c",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-07.svg",
+      "bytes": 2606,
+      "sha256": "70cf5865f5a06ec420f19132d18712d7deadcb9f681ad4227ee58315384b366e",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-08.svg",
+      "bytes": 3696,
+      "sha256": "863b3a6fffe4f255b8beb9dbef8e54b0a19ffecde667885e04f7339e89f5bf11",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-09.svg",
+      "bytes": 2148,
+      "sha256": "16f25a58b754ab40948ddcb21f69b41b889abcf231f56a4b9269ca333c3fec6d",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-10.svg",
+      "bytes": 5013,
+      "sha256": "b2222d9680f58935edf09ac181fe3fcee24dda9f298011770b99a41cbb94d191",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-11.svg",
+      "bytes": 2444,
+      "sha256": "682cdbf43326ec4f26195397b449b5bd1dd4813c3299d2c643ad72988dd3d80a",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-12.svg",
+      "bytes": 2375,
+      "sha256": "f63cadd94ef6056b6c10b3ddc0903e6ccf91a15683199e4841a97616aba751e9",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-13.svg",
+      "bytes": 3737,
+      "sha256": "fed48971f671eb03c63a1315657418158ed488ceabe3ebfed9216b28645f4880",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-14.svg",
+      "bytes": 1520,
+      "sha256": "dda7d8789fcf20b305cae74f1b9e5650f6924285b8bc69b6455138d8623a07bc",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-15.svg",
+      "bytes": 1632,
+      "sha256": "5212321a3fbda5cb49802b6cf751c2961d333529e2ad57bc7d3b42d00defa92e",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-16.svg",
+      "bytes": 3070,
+      "sha256": "cddfc6716ac42cdc0e3fe0dc0a80987ad51da10281a33bdd4b31a8ef551b1361",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-17.svg",
+      "bytes": 2947,
+      "sha256": "7033365618bdeb7d4d1c3d6bcc5ea572cf8d44ad6accb3231d47a9560fdb0390",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-18.svg",
+      "bytes": 1097,
+      "sha256": "3ea46131ad336c4101161b9d64bc87e925fc2d0d2a154bda7e56f1c935e38fc7",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-19.svg",
+      "bytes": 3025,
+      "sha256": "e642b660d41bfaf12bfe1ee03c025baf3c21c75a08032e5e9a14028e350af7af",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-20.svg",
+      "bytes": 1290,
+      "sha256": "cac034f3e859e05564db7cb20bad6ade7a205e99abbb33e7aa8085291a3ce31a",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-21.svg",
+      "bytes": 680,
+      "sha256": "f8a928c6e110722e3ebfe38654b4966919e7a1c9f30257829c863b43fa88080d",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-22.svg",
+      "bytes": 1054,
+      "sha256": "26c7976485be7a9583368b5aae5e911087a1d4fd6901ad1ace8042abe2024b28",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-23.svg",
+      "bytes": 3073,
+      "sha256": "3aa31fe9e13041f3f3fe37229cbb91e66700092bf09660ba0806976cac675ce9",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ss-24.svg",
+      "bytes": 1872,
+      "sha256": "6dd82385d126553eecbf2ba51a9b814197accd76cee918755eca27fa6b1e5673",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/ssintroImage.png",
+      "bytes": 24869,
+      "sha256": "381dd6f54b113318ef7d9de8f136e6c749e79bdd863845d28221e33606ebaf3e",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "images/stopwatch.svg",
+      "bytes": 10944,
+      "sha256": "f9b10a981d1d5680c23ce1a344362a76ec06e75fff1b43d840296773d545fbee",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    },
+    {
+      "file": "LICENSE-core.txt",
+      "bytes": 555,
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "owner": "@m2c2kit/core@0.3.37"
+    },
+    {
+      "file": "LICENSE-symbol-search.txt",
+      "bytes": 555,
+      "sha256": "316870ecad497934a5547bb853082c68f2a345ddfd739e02b8d880d928bd8672",
+      "owner": "@m2c2kit/assessment-symbol-search@0.8.35"
+    }
+  ]
+}

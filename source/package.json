@@ -1,0 +1,24 @@
+{
+  "name": "icu-cognition-ema",
+  "version": "1.0.0-rc.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "node scripts/prepare-symbol-assets.mjs && tsc --noEmit && vite build && node scripts/build-offline.mjs",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "tsx --test tests/*.test.ts",
+    "postinstall": "node scripts/patch-symbol-search.mjs"
+  },
+  "dependencies": {
+    "@m2c2kit/assessment-symbol-search": "0.8.35",
+    "@m2c2kit/session": "0.3.19",
+    "jszip": "3.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
+  }
+}
