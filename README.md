@@ -8,8 +8,8 @@
 
 流程：三词学习与即时回忆 → 五项症状 → Stroop → 三词延迟回忆 → 12题符号搜索 → 核对导出。
 
-## 发布
+## 使用
 
-仓库Settings → Pages，选择Deploy from a branch、main、/docs，再保存。部署完成后访问：https://qinghuiying1.github.io/icu-cognition-ema/ 。首次联网加载资源，完成平板断网、计时、声音及导出验收后再采集正式资料。
+[打开测评平台](https://qinghuiying1.github.io/icu-cognition-ema/)。2026年10月14日已完成发布，线上104项资源校验和电脑Edge完整模拟测评通过。首次联网加载资源，完成平板断网、计时、声音及导出验收后再采集正式资料。
 
 说明：[操作与验收](source/docs/操作与验收.md)、[技术核查](source/docs/技术核查记录.md)、[材料来源](source/docs/材料与证据.md)、[第三方许可](source/docs/第三方许可说明.md)。
